@@ -1,0 +1,22 @@
+{
+  "name": "workers-14",
+  "module": "index.ts",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "wrangler dev index.ts",
+    "deploy": "wrangler deploy --minify index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240405.0",
+    "wrangler": "^3.48.0"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.6.0"
+  }
+}
