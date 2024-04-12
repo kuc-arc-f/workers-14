@@ -27,10 +27,10 @@ const Router = {
       response = await testRouter.get_list(req, res, env, client);  
     }
     if (pathname === "/test/delete") {
-      response = await testRouter.delete(req, res, env);  
+      response = await testRouter.delete(req, res, env, client);  
     }
     if (pathname === "/test/update") {
-      response = await testRouter.update(req, res, env);  
+      response = await testRouter.update(req, res, env, client);  
     }
     /*
     if (pathname === "/todos/create") {

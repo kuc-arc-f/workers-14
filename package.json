@@ -7,6 +7,7 @@
   "main": "index.js",
   "scripts": {
     "start": "wrangler dev index.ts",
+    "dev": "wrangler dev index.ts",
     "deploy": "wrangler deploy --minify index.ts"
   },
   "keywords": [],

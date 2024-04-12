@@ -59,7 +59,9 @@ console.log(req);
   *
   * @return
   */ 
-  update: async function (req: any, res: any, env: any): Promise<Response>
+  update: async function (
+    req: any, res: any, env: any, client: any
+  ): Promise<Response>
   {
     const retObj = {ret: "NG", data: [], message: ''}
     try{
@@ -79,7 +81,9 @@ console.log(req);
   *
   * @return
   */ 
-  delete: async function (req: any, res: any, env: any): Promise<Response>
+  delete: async function (
+    req: any, res: any, env: any, client: any
+  ): Promise<Response>
   {
 //    console.log("#test.delete");
 //    console.log(req);
@@ -87,8 +91,9 @@ console.log(req);
     try{
       if (req) {
         const sql = `
-        DELETE FROM Customers WHERE id = ${req.id}
+        DELETE FROM todos WHERE id = ${req.id}
         `;
+        const resulte = await client.execute(sql);
         //console.log(sql);
       }            
       return Response.json({ret: "OK", data: req});
@@ -107,23 +112,22 @@ console.log(req);
     req: any, res: any, env: any, client: any
   ): Promise<Response>
   {
-//    console.log(req);
+console.log(req);
+// req.id
     let item = {};
-    let result: any = {}; 
     const retObj = {ret: "NG", data: [], message: ''}
     try{
       if (req) {
         const sql = `
-        SELECT * FROM todos ORDER BY id desc
-        LIMIT 100
+        SELECT * FROM todos WHERE id = ${req.id}
         `;
         const resulte = await client.execute(sql);
-//console.log(result.results);
+//console.log(resulte.rows);
         if(resulte.rows < 1) {
           console.error("Error, results.length < 1");
           throw new Error('Error , get');
         }
-//        item = result.results[0];
+        item = resulte.rows[0];
       }      
       return Response.json({ret: "OK", data: item});
     } catch (e) {
